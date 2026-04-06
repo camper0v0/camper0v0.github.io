@@ -167,31 +167,22 @@
     });
   }
 
-  function sendPayload(payload) {
-    const text = JSON.stringify(payload);
+function sendPayload(payload) {
+  const text = JSON.stringify(payload);
 
-    try {
-      if (navigator.sendBeacon) {
-        const blob = new Blob([text], { type: "application/json" });
-        const ok = navigator.sendBeacon(REPORT_ENDPOINT, blob);
-        if (ok) return;
-      }
-    } catch (err) {
-      console.error("sendBeacon failed:", err);
-    }
-
-    fetch(REPORT_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: text,
-      mode: "cors",
-      keepalive: true,
-    }).catch((err) => {
-      console.error("notify fetch failed:", err);
-    });
-  }
+  fetch(REPORT_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: text,
+    mode: "cors",
+    credentials: "omit",
+    keepalive: true,
+  }).catch((err) => {
+    console.error("notify fetch failed:", err);
+  });
+}
 
   function classify(xhr, eventName) {
     if (eventName === "load") {
