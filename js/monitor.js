@@ -2,7 +2,7 @@
   const REPORT_ENDPOINT = window.__NOTIFY_ENDPOINT__;
   if (!REPORT_ENDPOINT) return;
 
-  const TARGET_TIMEOUT_MS = 3500;   // 每个目标请求最多等待 3.5 秒
+  const TARGET_TIMEOUT_MS = 7500;   // 每个目标请求最多等待 3.5 秒
   const PAGE_WATCHDOG_MS = 10000;   // 整页 10 秒还没跳转就兜底通知
 
   const state = {
